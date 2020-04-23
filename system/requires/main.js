@@ -12,8 +12,8 @@ require.config({
         "ocLazyLoad" : "requires/ocLazyLoad.min",
         "angular": "requires/angular.min",
         "app" : "app",
-        "authentication": "app-services/authentication.service",
-        "flash":"app-services/flash.service",
+        "authentication": "services/authentication.service",
+        "flash":"services/flash.service",
 
         "login":"modules/login/login.controller",
         "logout":"modules/logout/logout.controller",
