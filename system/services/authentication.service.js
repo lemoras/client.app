@@ -18,6 +18,8 @@
         service.GetUserApp = GetUserApp;
         service.GetConfig = GetConfig;
         
+        var authServiceUrl = baseURL.includes("localhost") ? baseURL : "http://kimlik.online";
+
         return service;
 
         function GetUserApp(callback) {
@@ -25,7 +27,7 @@
         }
 
         function Login(username, password, applicationId, callback) {
-            getjson.postData(baseURL + '/api' + authPath + '/login', { username: username, password: password, applicationInstanceId: applicationId })
+            getjson.postData(authServiceUrl + '/api' + authPath + '/login', { username: username, password: password, applicationInstanceId: applicationId })
                 .then(function (res) {                    
                     if (res.data.token === undefined || res.data.token.trim() === '') {
                         $rootScope.applications = res.data.applications;
@@ -43,14 +45,14 @@
         }
 
         function ExternalLogin(username, password, callback) {
-            getjson.postData(baseURL + '/api' + authPath + '/login', { email: username, password: password })
+            getjson.postData(authServiceUrl + '/api' + authPath + '/login', { email: username, password: password })
                 .then(function (res) {
                         callback(res);
                 });
         }
 
         function CreateAccount(username, password, callback) {
-            getjson.postData(baseURL + '/api' + authPath + '/new', { email: username, password: password })
+            getjson.postData(authServiceUrl + '/api' + authPath + '/new', { email: username, password: password })
                 .then(function (res) {
                         callback(res);
                 });
@@ -91,7 +93,7 @@
         }
 
         function GetConfig(callback) {           
-                getjson.getData(baseURL + '/system/configs/' + window.location.hostname +'.json')
+                getjson.getData(authServiceUrl + '/system/configs/' + window.location.hostname +'.json')
                     .then(function (res) {
                         callback(res);
                     });
@@ -99,7 +101,7 @@
         }
 
         function InternalLogin(username, password, callback) {
-            getjson.postData(baseURL + '/api' + authPath + '/login', { email: username, password: password })
+            getjson.postData(authServiceUrl + '/api' + authPath + '/login', { email: username, password: password })
                 .then(function (res) {                    
                     if (res.status) {
                         service.SetCredentials(username, password, res.account.token);
