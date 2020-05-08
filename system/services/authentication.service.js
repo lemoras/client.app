@@ -114,6 +114,17 @@
             $http.defaults.headers.common.Authorization = 'Bearer';
         }
 
+        function fileExists(url) {
+            if(url){
+                var req = new XMLHttpRequest();
+                req.open('GET', url, false);
+                req.send();
+                return req.status==200;
+            } else {
+                return false;
+            }
+        }
+
         function GetConfig(callback) {           
             var urlParams = new URLSearchParams(window.location.search);
             var template = urlParams.get('template');
@@ -122,7 +133,7 @@
             }else{
                 template = template + "-";
                 var filePath = "../configs/" + template + window.location.hostname + ".json";
-                if (!filePath.exists()) {
+                if (!fileExists(filePath)) {
                     template = "";
                 }
             }
