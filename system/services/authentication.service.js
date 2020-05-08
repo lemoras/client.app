@@ -132,7 +132,7 @@
                 template = "";
             }else{
                 template = template + "-";
-                var filePath = "../configs/" + template + window.location.hostname + ".json";
+                var filePath = "/system/configs/" + template + window.location.hostname + ".json";
                 if (!fileExists(filePath)) {
                     template = "";
                 }
