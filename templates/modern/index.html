@@ -42,8 +42,6 @@
   <div id="pageContent" style="display: none" width="50" border="0" cellspacing="0" cellpadding="0">
     <div ng-if="config == undefined" ng-view></div>
     <div id="configDisplay" style="display: none" width="50" border="0" cellspacing="0" cellpadding="0" ng-if="config != undefined" data-ng-init="loadProgressBar2()">
-
-
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
     <a class="navbar-brand" href="index.html">{{ config.root.companyName}} <img src="assets/img/logo.png" data-retina="true" alt="" width="163" height="36"></a>
@@ -64,7 +62,7 @@
           </a>
           <ul ng-if="item.list.length > 0" class="sidenav-second-level collapse" id="collapseComponents">
             <li ng-repeat="x in item.list | orderBy: 'index'">
-              <a ng-click="navSelect($parent.$index, item.value, x.value)" ng-class="x.icon" href="{{ x.link }}">{ x.value }}</a>
+              <a ng-click="navSelect($parent.$index, item.value, x.value)" ng-class="x.icon" href="{{ x.link }}">{{ x.value }}</a>
             </li>
           </ul>
         </li>
@@ -116,12 +114,12 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{config.module.logout.label}}</h5>
+            <h5 class="modal-title" id="exampleModalLabel">{{config.module.logout.btnCaption}}</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">config.module.logout.btnCaption</div>
+          <div class="modal-body">{{config.module.logout.label}}</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">{{config.module.logout.btnCancel}}</button>
             <a class="btn btn-primary" href="login.html">{{config.module.logout.btnLogout}}</a>
@@ -132,13 +130,15 @@
 
   </div>
 </div>
+
+<script src="./../../system/requires/jquery.min.js"></script>
+
     <!-- Bootstrap core JavaScript-->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="assets/js/jquery.easing.min.js"></script>
     <!-- Page level plugin JavaScript-->
-    <script src="assets/js/Chart.js"></script>
     <script src="assets/js/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables.bootstrap4.js"></script>
 	<script src="assets/js/jquery.selectbox-0.2.js"></script>
@@ -146,9 +146,13 @@
 	<script src="assets/js/jquery.magnific-popup.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="assets/js/admin.js"></script>
-	<!-- Custom scripts for this page-->
-    <script src="assets/js/admin-charts.js"></script>
 	
+    <script src="./../../system/requires/require.min.js"></script>
+    <script type="text/javascript" src="./../../system/requires/loadapp.js"></script>
 
+    <link rel="stylesheet" href="./../../system/requires/jquery-confirm.min.css">
 
-</body></html>
+    <script src="./../../system/requires/jquery-confirm.min.js"></script>
+
+</body>
+</html>
