@@ -17,6 +17,7 @@ require.config({
         "profile" : "services/profile.service",
         "lemoras" :"services/lemoras.service",
         "message" : "services/message.service",
+        "template" : "services/template.service",
 
         "login":"modules/login/login.controller",
         "logout":"modules/logout/logout.controller"
@@ -35,6 +36,7 @@ require.config({
         "profile": { deps: ["app"], exports: "profile" },
         "lemoras": { deps: ["app"], exports: "lemoras" },
         "message": { deps: ["app"], exports: "message" },
+        "template": { deps: ["app"], exports: "template" },
         "logout": { deps: ["app", "jquery-confirm"], exports: "logout" },
         "login": { deps: ["authentication", "flash", "app"], exports: "login" }
     },
@@ -55,7 +57,8 @@ require(
         "authentication",
         "profile",
         "lemoras",
-        "message"
+        "message",
+        "template"
     ],
     function () {
         angular.bootstrap(document, ['app']);
