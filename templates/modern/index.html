@@ -35,34 +35,30 @@
   <!-- Your custom styles -->
   <link href="assets/css/admin.css" rel="stylesheet">
 	
-<style type="text/css">/* Chart.js */
-@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
-
 <body id="rootBody" onload="loadProgressBar();" class="fixed-nav sticky-footer" id="page-top">
   <div id="pageContent" style="display: none" width="50" border="0" cellspacing="0" cellpadding="0">
     <div ng-if="config == undefined" ng-view></div>
     <div id="configDisplay" style="display: none" width="50" border="0" cellspacing="0" cellpadding="0" ng-if="config != undefined" data-ng-init="loadProgressBar2()">
-  <!-- Navigation-->
+      <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">{{ config.root.companyName}} <img src="assets/img/logo.png" data-retina="true" alt="" width="163" height="36"></a>
+    <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" data-retina="true" alt="" width="36" height="36"> {{ config.root.companyName}}</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-        <li ng-repeat="item in config.root.navList | orderBy: 'index'" ng-class="item.list.length > 0 ? { 'nav-item dropdown active': $index == navSelected } : {'nav-item active': $index == navSelected }" data-toggle="tooltip" data-placement="right" title="" data-original-title="Dashboard">
-          <a ng-if="item.list.length === 0 || item.list === undefined" ng-click="navSelect($index, item.value)" class="nav-link" href="{{ item.link }}">
+        <li ng-repeat="item in config.root.navList | orderBy: 'index'" class="nav-item" data-toggle="tooltip" data-placement="right" title="">
+          <a ng-if="item.list.length === 0 || item.list === undefined" class="nav-link" href="{{ item.link }}">
             <i ng-class="item.icon"></i>
             <span class="nav-link-text">{{ item.value }}</span>
           </a>
-          <a ng-if="item.list.length > 0" class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+          <a ng-if="item.list.length > 0" class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#{{ item.tag }}" data-parent="#exampleAccordion">
             <i ng-class="item.icon"></i>
             <span class="nav-link-text">{{ item.value }}</span>
           </a>
-          <ul ng-if="item.list.length > 0" class="sidenav-second-level collapse" id="collapseComponents">
+          <ul ng-if="item.list.length > 0" class="sidenav-second-level collapse" id="{{ item.tag }}">
             <li ng-repeat="x in item.list | orderBy: 'index'">
-              <a ng-click="navSelect($parent.$index, item.value, x.value)" ng-class="x.icon" href="{{ x.link }}">{{ x.value }}</a>
+              <a href="{{ x.link }}">{{ x.value }}</a>
             </li>
           </ul>
         </li>
@@ -114,7 +110,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{config.module.logout.btnCaption}}</h5>
+            <h5 class="modal-title" id="exampleModalLabel">{{config.module.logout.caption}}</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
@@ -122,31 +118,31 @@
           <div class="modal-body">{{config.module.logout.label}}</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">{{config.module.logout.btnCancel}}</button>
-            <a class="btn btn-primary" href="login.html">{{config.module.logout.btnLogout}}</a>
+            <a class="btn btn-primary" href="./#!/login">{{config.module.logout.btnLogout}}</a>
           </div>
         </div>
       </div>
     </div>
+
+        <!-- Bootstrap core JavaScript-->
+        <!-- <script src="assets/js/jquery.min.js"></script> -->
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="assets/js/jquery.easing.min.js"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="assets/js/jquery.dataTables.js"></script>
+        <script src="assets/js/dataTables.bootstrap4.js"></script>
+      <script src="assets/js/jquery.selectbox-0.2.js"></script>
+      <script src="assets/js/retina-replace.min.js"></script>
+      <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="assets/js/admin.js"></script>
 
   </div>
 </div>
 
 <script src="./../../system/requires/jquery.min.js"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="assets/js/jquery.easing.min.js"></script>
-    <!-- Page level plugin JavaScript-->
-    <script src="assets/js/jquery.dataTables.js"></script>
-    <script src="assets/js/dataTables.bootstrap4.js"></script>
-	<script src="assets/js/jquery.selectbox-0.2.js"></script>
-	<script src="assets/js/retina-replace.min.js"></script>
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="assets/js/admin.js"></script>
-	
     <script src="./../../system/requires/require.min.js"></script>
     <script type="text/javascript" src="./../../system/requires/loadapp.js"></script>
 
