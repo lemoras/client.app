@@ -5,10 +5,15 @@
         .module('app')
         .controller('ChangeTemplateController', ChangeTemplate);
 
-    ChangeTemplate.$inject = ['TemplateService', '$rootScope'];
-    function ChangeTemplate(TemplateService, $rootScope) {
+    ChangeTemplate.$inject = ['TemplateService','ProfileService', '$rootScope'];
+    function ChangeTemplate(TemplateService, ProfileService, $rootScope) {
         var vm = this;
 
-    }
+        var logout = function () {
+            ProfileService.Logout();
+        };
 
+        askQuestion(logout);
+    };
+    
 })();

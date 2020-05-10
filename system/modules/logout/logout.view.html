@@ -10,13 +10,14 @@ var isLogout = false;
         title: $title,
         icon : 'fa fa-question-circle',
         content : ''+$msg+'',
+        autoClose: 'Confirm|6000',
         theme : 'supervan',
         closeIcon: true,
         animation: 'scale',
         type: 'blue',
         draggable:'true',
         buttons:{
-            'Continue' : {
+            'Confirm' : {
                 text: $btnLogout,
                 keys : ['enter'],
                 action : function(){

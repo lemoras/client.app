@@ -1,20 +1,66 @@
-<style>
-  #containerdashboard
-  {
-      width: auto;
-      height: auto;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      margin-left: -50px;
-      margin-top: -50px;
-  }
-</style>
 
-<div class="container-fluid">
-  <br><br><center>
-  <h2>Change Template sayfası</h2></center>
-<div id="containerdashboard">  
-  <img src="./../../../../templates/default/assets/img/background.png">
-</div>
-</div>
+<script type="text/javascript">
+
+
+  function askQuestion(logout){
+  
+  var isLogout = false;
+  
+      $.confirm({
+          title: 'Şablonu değiştir',
+          icon : 'fa fa-info-circle',
+          content : 'Bu bilgisayarda herhangi bir kullanıcı için şablonu sabitle. İşlemden sonra çıkış yapılacaktr. ',
+          autoClose: 'Cancel|10000',
+          theme : 'supervan',
+          closeIcon: true,
+          animation: 'scale',
+          type: 'blue',
+          draggable:'true',
+          buttons:{
+              'Confirm' : {
+                  text: 'modern şablon',
+                  action : function(){
+                      isLogout = true;
+                      logout();
+                      window.localStorage.setItem("thispctemplate", 'modern');
+                      window.location.replace("#!/login");
+                  }
+              },
+              'Continue' : {
+                  text: 'varsayılan şablon',
+                  action : function(){
+                      isLogout = true;
+                      logout();
+                      window.localStorage.removeItem("thispctemplate");
+                      window.location.replace("#!/login");
+                  }
+              },
+              'Cancel': {
+                  text: 'Vazgeç',
+                  keys : ['esc'],
+                  action: function(){
+                      this.close();
+                      canceled();
+                  }
+              }
+          },
+          close: function () {;
+            $('.jconfirm').hide();
+            $('.jconfirm').remove();
+            if (!isLogout) {
+                  canceled();
+              }
+          }
+      });
+  
+      //$.confirm.hide();
+  };
+  
+  function canceled() { 
+    var scope = angular.element(document.getElementById('rootBody')).scope();
+    scope.setNav();
+    window.location.replace("#!/");
+  };
+  </script>
+  
+          
