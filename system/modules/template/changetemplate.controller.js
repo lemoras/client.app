@@ -5,15 +5,23 @@
         .module('app')
         .controller('ChangeTemplateController', ChangeTemplate);
 
-    ChangeTemplate.$inject = ['TemplateService','ProfileService', '$rootScope'];
-    function ChangeTemplate(TemplateService, ProfileService, $rootScope) {
+    ChangeTemplate.$inject = ['TemplateService', 'AuthenticationService', 'FlashService', 'notification'];
+    function ChangeTemplate(TemplateService, AuthenticationService, FlashService, notification) {
         var vm = this;
 
-        var logout = function () {
-            ProfileService.Logout();
-        };
+        var setTemplate = function (template, callback){
+            TemplateService.SetTemplate(template);
+            AuthenticationService.GetConfig(function(result) {
+                FlashService.WriteLocal(true, result.data);
+                callback(true);
+            });
+        }
 
-        askQuestion(logout);
+        var whenNotSetTemplateAlert = function() {
+            notification.pushWarningNotify("Şablon bir nedenden ötürü değiştirilemedi.");
+        }
+
+        askQuestion(whenNotSetTemplateAlert, setTemplate);
     };
     
 })();

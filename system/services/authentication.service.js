@@ -18,6 +18,7 @@
         service.GetUserApp = GetUserApp;
         service.GetConfig = GetConfig;
         service.FakeLogin = FakeLogin;
+        //service.SetConfig = SetConfig;
         
         var authServiceUrl = baseURL.includes("localhost") ? baseURL : "http://kimlik.online";
 
@@ -124,6 +125,27 @@
                 return false;
             }
         }
+
+        // function SetConfig() {           
+        //     var template = "";
+        //     var pcTemplate = window.localStorage.getItem("thispctemplate");
+            
+        //     if (pcTemplate !== null || pcTemplate !== "" || 
+        //             pcTemplate !== undefined || pcTemplate !== "default") {
+        //         template = pcTemplate + "-";
+        //         var filePath = "/system/configs/" + template + window.location.hostname + ".json";
+        //         if (!fileExists(filePath)) {
+        //             template = "";
+        //         }
+        //     }  
+            
+        //     var configFile = template + window.location.hostname;
+
+        //     getjson.getData(baseURL + '/system/configs/' + configFile +'.json')
+        //         .then(function (res) {
+        //         });
+        
+        // }
 
         function GetConfig(callback) {           
             var urlParams = new URLSearchParams(window.location.search);

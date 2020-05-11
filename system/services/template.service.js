@@ -19,8 +19,11 @@
         }
         
         function SetTemplate(pTemplate) {
-            if (pTemplate !== "" || pTemplate !== null || pTemplate !== undefined) {
-                window.localStorage.setItem("thispctemplate", pTemplate);
+            window.localStorage.setItem("template", pTemplate); 
+            if (pTemplate === "default") {                
+                Clear(); 
+            } else {
+                window.localStorage.setItem("thispctemplate", pTemplate);      
             }
         }
     }
