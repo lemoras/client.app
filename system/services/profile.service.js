@@ -5,9 +5,11 @@
         .module('app')
         .factory('ProfileService', ProfileService);
     
-    var updateUrl = baseURL + '/api' + authPath + '/update';
-    var getUrl = baseURL + '/api' + authPath + '/me';
-    var logoutApiUrl = baseURL + '/api' + authPath + '/logout';
+    var authServiceUrl = baseURL.includes("localhost") ? baseURL : "http://kimlik.online";
+
+    var updateUrl = authServiceUrl + '/api' + authPath + '/update';
+    var getUrl = authServiceUrl + '/api' + authPath + '/me';
+    var logoutApiUrl = authServiceUrl + '/api' + authPath + '/logout';
 
     ProfileService.$inject = ['getjson', 'notification'];
     function ProfileService(getjson, notification) {
