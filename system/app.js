@@ -63,8 +63,7 @@ var authPath = "/user";
         .factory('getjson', function ($http, notification) {
 
             var getData = function (url) {
-                var isLogin = window.localStorage.getItem("config") !== "";
-                $http.defaults.headers.common['Authorization'] = window.localStorage.getItem("authorization");
+                addAuthHeader();
                 return $http.get(url).
                     then(function (response) {
                         return httpResponse(response);
@@ -77,7 +76,7 @@ var authPath = "/user";
                 var isLogin = window.localStorage.getItem("authorization") !== "";
                 isLogin = window.localStorage.getItem("config") !== "";
 
-                $http.defaults.headers.common['Authorization'] = window.localStorage.getItem("authorization");
+                addAuthHeader();
                 return $http.post(url, data).
                     then(function (response) {
                         return httpResponse(response, isLogin);
@@ -87,7 +86,7 @@ var authPath = "/user";
             };
 
             var putData = function (url, data) {
-                $http.defaults.headers.common['Authorization'] = window.localStorage.getItem("authorization");
+                addAuthHeader();
                 return $http.put(url, data).
                     then(function (response) {
                         return httpResponse(response);
@@ -97,13 +96,20 @@ var authPath = "/user";
             };
 
             var deleteData = function (url) {
-                $http.defaults.headers.common['Authorization'] = window.localStorage.getItem("authorization");
+                addAuthHeader();
                 return $http.delete(url).
                     then(function (response) {
                         return httpResponse(response);
                     }, function (response) {
                         return httpError(response);
                     }).catch(function (error) { angular.noop; });
+            };
+
+            var addAuthHeader = function() {
+                $http.defaults.headers.common['Authorization'] = window.localStorage.getItem("authorization");
+                if(window.localStorage.getItem("authorization") == null) {
+                    $http.defaults.headers.common['UserId'] = "1";
+                }
             };
 
             var httpResponse = function(response, isLogin = false) {
