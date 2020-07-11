@@ -1,0 +1,8 @@
+{
+  "files.exclude": {
+    "Dockerfile": true,
+    "domain.apache.conf": true,
+    "service.sh": true,
+    ".vscode": true
+  }
+}
