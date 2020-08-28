@@ -24,7 +24,7 @@ require.config({
         "angular-route": { deps: ["angular"], exports: "angular-route" },
         "angular-cookies": { deps: ["angular"], exports: "angular-cookies" },
         "ocLazyLoad": { deps: ["angular"], exports: "ocLazyLoad" },
-        "angular": {  exports: "angular" },
+        "angular": { deps: ["jquery"], exports: "angular" },
         "app": { deps: ["angular", "angular-route", "angular-cookies", "ocLazyLoad", 'angular-notify'], exports: "app" },
         "authentication": { deps: ["app"], exports: "authentication" },
         "flash": { deps:["app"], exports: "flash" },
