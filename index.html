@@ -1,13 +1,32 @@
 ﻿<!DOCTYPE html>
-<html ng-app="app" lang="en">
+<html lang="en">
 
 <head>
 
     <meta charset="utf-8" />
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/templates/icon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/templates/icon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/templates/icon//apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/templates/icon//apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="templates/icon//apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="templates/icon//apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/templates/icon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/templates/icon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/templates/icon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/templates/icon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/templates/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/templates/icon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/templates/icon/favicon-16x16.png">
+    <link rel="manifest" href="/templates/icon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/templates/icon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
     <title id="configTitle">
-        Sayfa Yükleniyor..
+        Wellcome to Panel | Lemoras
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     
@@ -22,7 +41,7 @@
 
 <body class="" id="rootBody" onload="loadProgressBar();">
     <div id="pageContent" style="display: none" width="50" border="0" cellspacing="0" cellpadding="0">
-        <div ng-if="config == undefined" ng-view></div>
+        <ng-view ng-if="config == undefined"></ng-view>
         <div id="configDisplay" style="display: none" width="50" border="0" cellspacing="0" cellpadding="0" ng-if="config != undefined" data-ng-init="loadProgressBar2()" class="wrapper ">
             
         </div>
@@ -30,10 +49,8 @@
     
     <script src="system/requires/require.min.js"></script>
     <script type="text/javascript" src="system/requires/main.js"></script>
-
+   
     <link rel="stylesheet" href="system/requires/jquery-confirm.min.css">
-    <script src="system/requires/jquery.min.js"></script>
-    <script src="system/requires/jquery-confirm.min.js"></script>
 
 </body>
 

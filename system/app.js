@@ -164,8 +164,8 @@ var authPath = "/user";
         .config(config)
         .run(run);
 
-    config.$inject = ['$routeProvider', '$locationProvider', '$ocLazyLoadProvider', '$qProvider'];
-    function config($routeProvider, $locationProvider, $ocLazyLoadProvider, $qProvider) {
+    config.$inject = ['$routeProvider', '$ocLazyLoadProvider', '$qProvider'];
+    function config($routeProvider, $ocLazyLoadProvider, $qProvider) {
         $qProvider.errorOnUnhandledRejections(false);
         $routeProvider.when('/login', {
             templateUrl: '../../system/modules/login/login.view.html',
@@ -193,8 +193,8 @@ var authPath = "/user";
     }
 
 
-    run.$inject = ['$rootScope', '$location', '$cookies', '$http', '$route', 'getjson', '$q'];
-    function run($rootScope, $location, $cookies, $http, $route, getjson, $q) {
+    run.$inject = ['$rootScope', '$location', '$cookies', '$http', '$route'];
+    function run($rootScope, $location, $cookies, $http, $route) {
 
         $rootScope.config = undefined;
 
@@ -250,7 +250,7 @@ var authPath = "/user";
         }
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            // redirect to login page if not logged in and trying to access a restricted page
+            //redirect to login page if not logged in and trying to access a restricted page
             var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
