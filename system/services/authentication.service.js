@@ -18,6 +18,7 @@
         service.GetUserApp = GetUserApp;
         service.GetConfig = GetConfig;
         service.FakeLogin = FakeLogin;
+        service.FakeCreateAccount = FakeCreateAccount;
         //service.SetConfig = SetConfig;
         
         var authServiceUrl = baseURL.includes("localhost") ? baseURL : "http://kimlik.online";
@@ -85,6 +86,12 @@
                 });
         }
 
+        function FakeCreateAccount(username, password, callback) {
+            isFakeLogin = true;
+
+            callback({ success: true, message: "" });
+        }
+
         function SetCredentials(username, password, token) {
             var authdata = Base64.encode(username + ':' + password);
 
@@ -95,11 +102,7 @@
                 }
             };
 
-            if (isFakeLogin) {
-                var userId = "1";
-                window.localStorage.setItem("fakeuserid", userId);
-                $http.defaults.headers.common['UserId'] = userId;
-            }
+            setUserIForFake(1);
 
             // set default auth header for http requests
             $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
@@ -111,6 +114,13 @@
             var cookieExp = new Date();
             cookieExp.setDate(cookieExp.getDate() + 7);
             $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
+        }
+
+        function setUserIForFake(userId) {
+            if (isFakeLogin) {
+                window.localStorage.setItem("fakeuserid", userId);
+                $http.defaults.headers.common['UserId'] = userId;
+            }
         }
 
         function ClearCredentials() {

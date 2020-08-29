@@ -21,9 +21,13 @@
             // reset login status
             AuthenticationService.ClearCredentials();
 
-            var urlParams = new URLSearchParams(window.location.search);
-            vm.returnParam = urlParams.get('return');
-            vm.typeParam = urlParams.get('type');
+            // var urlParams = new URLSearchParams(window.location.search);
+            // vm.returnParam = urlParams.get('return');
+            // vm.typeParam = urlParams.get('type');
+
+            var urlParams = $location.search();
+            vm.returnParam = urlParams.return;
+            vm.typeParam = urlParams.type;
             
         })();
         
