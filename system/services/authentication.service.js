@@ -176,14 +176,13 @@
                 template = "";
 
                 var pcTemplate = window.localStorage.getItem("thispctemplate");
-                if (pcTemplate !== null || pcTemplate !== "" || 
-                        pcTemplate !== undefined || pcTemplate !== "default") {
-                    template = pcTemplate + "-";
-                    var filePath = "/system/configs/" + template + window.location.hostname + ".json";
-                    if (!fileExists(filePath)) {
-                        template = "";
-                    }
-                }  
+                if (pcTemplate !== null) {
+                    template = pcTemplate + "-";   
+                }
+                var filePath = "/system/configs/" + template + window.location.hostname + ".json";
+                if (!fileExists(filePath)) {
+                    template = "";
+                }
             }else{
                 template = template + "-";
                 var filePath = "/system/configs/" + template + window.location.hostname + ".json";
