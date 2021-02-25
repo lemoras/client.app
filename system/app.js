@@ -62,43 +62,51 @@ var authPath = "/user";
         })
         .factory('getjson', function ($http, notification) {
 
-            var getData = function (url) {
+            var getData = function (url, isNotNotify = false) {
                 addAuthHeader();
                 return $http.get(url).
                     then(function (response) {
+                        if (httpResponseCheckNotify(response, isNotNotify))
+                            return response.data;
                         return httpResponse(response);
                     }, function (response) {
                         return httpError(response);
                     }).catch(function (error) { angular.noop; });
             };
 
-            var postData = function (url, data) {
+            var postData = function (url, data, isNotNotify = false) {
                 var isLogin = window.localStorage.getItem("authorization") !== "";
                 isLogin = window.localStorage.getItem("config") !== "";
 
                 addAuthHeader();
                 return $http.post(url, data).
                     then(function (response) {
+                        if (httpResponseCheckNotify(response, isNotNotify))
+                            return response.data;
                         return httpResponse(response, isLogin);
                     }, function (response) {
                         return httpError(response, isLogin);
                     }).catch(function (error) { angular.noop; });
             };
 
-            var putData = function (url, data) {
+            var putData = function (url, data, isNotNotify = false) {
                 addAuthHeader();
                 return $http.put(url, data).
                     then(function (response) {
+                        if (httpResponseCheckNotify(response, isNotNotify))
+                            return response.data;
                         return httpResponse(response);
                     }, function (response) {
                         return httpError(response);
                     }).catch(function (error) { angular.noop; });
             };
 
-            var deleteData = function (url) {
+            var deleteData = function (url, isNotNotify = false) {
                 addAuthHeader();
                 return $http.delete(url).
                     then(function (response) {
+                        if (httpResponseCheckNotify(response, isNotNotify))
+                            return response.data;
                         return httpResponse(response);
                     }, function (response) {
                         return httpError(response);
@@ -151,6 +159,11 @@ var authPath = "/user";
 
                 return response.data; 
             };
+
+            var httpResponseCheckNotify = function(response, isNotNotify) {
+                return isNotNotify && (response.status == 200 || 
+                   response.status == 201 || response.status == 204);
+           };
 
             var httpError = function(response, isLogin = false) {                      
                 notification.pushDangerNotify(response.statusText, isLogin);
